@@ -17,9 +17,10 @@ func (rb RingBuffer4[T]) Enqueue(v T) error {
 }
 
 func (rb RingBuffer4[T]) Dequeue() (v T, err error) {
-	v, ok := <-rb
-	if !ok {
+	select {
+	case v = <-rb:
+		return v, nil
+	default:
 		return v, ErrEmpty
 	}
-	return v, nil
 }
