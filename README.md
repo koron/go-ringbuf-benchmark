@@ -6,6 +6,17 @@
 
 See <https://kumagi.hatenablog.com/entry/ring-buffer>
 
+## Variations
+
+Type         | Desc.
+-------------|-------
+RingBuffer0  | Naive implementation with write and read indexes with modulo
+RingBuffer1  | Use bit **and** op instead of modulo (based RingBuffer0)
+RingBuffer2  | Support goroutine with `sync.Mutex` (based RingBuffer1)
+RingBuffer3  | Use sync/atomic for multi-goroutine (based RingBuffer1)
+RingBuffer4  | Use chan for multi-goroutine
+RingBuffer5  | Use read index and capacity length w/o multi-goroutine supports
+
 ## Benchmark results
 
 ```console
