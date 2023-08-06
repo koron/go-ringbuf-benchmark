@@ -36,6 +36,10 @@ func benchmarkSingle(b *testing.B, rb RingBuffer[int]) {
 }
 
 func benchmarkMulti(b *testing.B, rb RingBuffer[int]) {
+	benchmarkMulti2(b, rb)
+}
+
+func benchmarkMulti1(b *testing.B, rb RingBuffer[int]) {
 	n := b.N / 2
 	Iq := n / 1000
 	Ir := n % 1000
@@ -50,8 +54,8 @@ func benchmarkMulti(b *testing.B, rb RingBuffer[int]) {
 			for count > 0 {
 				if rb.Enqueue(count) == nil {
 					count--
-				//} else {
-				//	writeFail++
+					//} else {
+					//	writeFail++
 				}
 				//writeTotal++
 			}
@@ -61,8 +65,8 @@ func benchmarkMulti(b *testing.B, rb RingBuffer[int]) {
 			for count > 0 {
 				if rb.Enqueue(count) == nil {
 					count--
-				//} else {
-				//	writeFail++
+					//} else {
+					//	writeFail++
 				}
 				//writeTotal++
 			}
@@ -75,8 +79,8 @@ func benchmarkMulti(b *testing.B, rb RingBuffer[int]) {
 			for count > 0 {
 				if _, err := rb.Dequeue(); err == nil {
 					count--
-				//} else {
-				//	readFail++
+					//} else {
+					//	readFail++
 				}
 				//readTotal++
 			}
@@ -86,8 +90,8 @@ func benchmarkMulti(b *testing.B, rb RingBuffer[int]) {
 			for count > 0 {
 				if _, err := rb.Dequeue(); err == nil {
 					count--
-				//} else {
-				//	readFail++
+					//} else {
+					//	readFail++
 				}
 				//readTotal++
 			}
@@ -95,22 +99,25 @@ func benchmarkMulti(b *testing.B, rb RingBuffer[int]) {
 	}()
 	wg.Wait()
 	/*
-	if writeFail > 0 || readFail > 0 {
-		b.Logf("N=%-9d write=%d/%d (%f) read=%d/%d (%f)", b.N,
-			writeFail, writeTotal, float64(writeFail)/float64(writeTotal),
-			readFail, readTotal, float64(readFail)/float64(readTotal))
-	}
+		if writeFail > 0 || readFail > 0 {
+			b.Logf("N=%-9d write=%d/%d (%f) read=%d/%d (%f)", b.N,
+				writeFail, writeTotal, float64(writeFail)/float64(writeTotal),
+				readFail, readTotal, float64(readFail)/float64(readTotal))
+		}
 	*/
 }
 
 func benchmarkMulti2(b *testing.B, rb RingBuffer[int]) {
-	//n := b.N / 2
+	n := b.N/2
+	if n == 0 {
+		n = 1
+	}
 	var wg sync.WaitGroup
 	wg.Add(2)
 	b.ResetTimer()
 	go func() {
 		defer wg.Done()
-		count := b.N/2 + 1
+		count := n
 		for count > 0 {
 			if rb.Enqueue(count) == nil {
 				count--
@@ -119,7 +126,7 @@ func benchmarkMulti2(b *testing.B, rb RingBuffer[int]) {
 	}()
 	go func() {
 		defer wg.Done()
-		count := b.N/2 + 1
+		count := n
 		for count > 0 {
 			if _, err := rb.Dequeue(); err == nil {
 				count--
@@ -153,9 +160,6 @@ func BenchmarkRingBuffer2(b *testing.B) {
 	b.Run("multi", func(b *testing.B) {
 		benchmarkMulti(b, rb)
 	})
-	b.Run("multi2", func(b *testing.B) {
-		benchmarkMulti2(b, rb)
-	})
 }
 
 func BenchmarkRingBuffer3(b *testing.B) {
@@ -166,8 +170,15 @@ func BenchmarkRingBuffer3(b *testing.B) {
 	b.Run("multi", func(b *testing.B) {
 		benchmarkMulti(b, rb)
 	})
-	b.Run("multi2", func(b *testing.B) {
-		benchmarkMulti2(b, rb)
+}
+
+func BenchmarkRingBuffer3B(b *testing.B) {
+	rb, _ := ringbuf.New3B[int](2 * 1024 * 1024)
+	b.Run("single", func(b *testing.B) {
+		benchmarkSingle(b, rb)
+	})
+	b.Run("multi", func(b *testing.B) {
+		benchmarkMulti(b, rb)
 	})
 }
 
@@ -179,9 +190,6 @@ func BenchmarkRingBuffer4(b *testing.B) {
 	b.Run("multi", func(b *testing.B) {
 		benchmarkMulti(b, rb)
 	})
-	b.Run("multi2", func(b *testing.B) {
-		benchmarkMulti2(b, rb)
-	})
 }
 
 func BenchmarkRingBuffer4B(b *testing.B) {
@@ -191,9 +199,6 @@ func BenchmarkRingBuffer4B(b *testing.B) {
 	})
 	b.Run("multi", func(b *testing.B) {
 		benchmarkMulti(b, rb)
-	})
-	b.Run("multi2", func(b *testing.B) {
-		benchmarkMulti2(b, rb)
 	})
 }
 
