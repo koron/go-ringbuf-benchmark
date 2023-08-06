@@ -27,21 +27,21 @@ goos: windows
 goarch: amd64
 pkg: github.com/koron-go/ringbuf
 cpu: Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz
-BenchmarkRingBuffer0/single-16          134190121                8.990 ns/op           0 B/op          0 allocs/op
-BenchmarkRingBuffer1/single-16          515369830                2.357 ns/op           0 B/op          0 allocs/op
-BenchmarkRingBuffer2/single-16          71773768                14.63 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer2/multi-16           74173429                19.48 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer3/single-16          134209962                8.842 ns/op           0 B/op          0 allocs/op
-BenchmarkRingBuffer3/multi-16           52277178                23.99 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer3B/single-16         129035656                9.440 ns/op           0 B/op          0 allocs/op
-BenchmarkRingBuffer3B/multi-16          47464974                26.73 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer4/single-16          60202279                19.94 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer4/multi-16           68165551                22.11 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer4B/single-16         59372432                19.20 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer4B/multi-16          57555612                21.16 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer5/single-16          511431560                2.278 ns/op           0 B/op          0 allocs/op
+BenchmarkRingBuffer0/single-16          177274972                6.697 ns/op           0 B/op          0 allocs/op
+BenchmarkRingBuffer1/single-16          835998076                1.431 ns/op           0 B/op          0 allocs/op
+BenchmarkRingBuffer2/single-16          84422025                13.75 ns/op            0 B/op          0 allocs/op
+BenchmarkRingBuffer2/multi-16           57571975                22.23 ns/op            0 B/op          0 allocs/op
+BenchmarkRingBuffer3/single-16          135313495                8.905 ns/op           0 B/op          0 allocs/op
+BenchmarkRingBuffer3/multi-16           44504277                22.79 ns/op            0 B/op          0 allocs/op
+BenchmarkRingBuffer3B/single-16         125987650                9.456 ns/op           0 B/op          0 allocs/op
+BenchmarkRingBuffer3B/multi-16          52267851                23.10 ns/op            0 B/op          0 allocs/op
+BenchmarkRingBuffer4/single-16          62735503                19.07 ns/op            0 B/op          0 allocs/op
+BenchmarkRingBuffer4/multi-16           60012002                20.86 ns/op            0 B/op          0 allocs/op
+BenchmarkRingBuffer4B/single-16         65714535                18.41 ns/op            0 B/op          0 allocs/op
+BenchmarkRingBuffer4B/multi-16          61101039                20.01 ns/op            0 B/op          0 allocs/op
+BenchmarkRingBuffer5/single-16          644982705                1.824 ns/op           0 B/op          0 allocs/op
 PASS
-ok      github.com/koron-go/ringbuf     20.594s
+ok      github.com/koron-go/ringbuf     21.503s
 ```
 
 * 複数goroutine環境での評価
