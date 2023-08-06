@@ -24,7 +24,7 @@ func (rb *RingBuffer2[T]) Enqueue(v T) error {
 	if rb.wx-rb.rx == len(rb.buf) {
 		return ErrFull
 	}
-	rb.buf[rb.wx&(len(rb.buf)-1)] = v
+	rb.buf[rb.wx&rb.mask()] = v
 	rb.wx++
 	return nil
 }
@@ -35,7 +35,11 @@ func (rb *RingBuffer2[T]) Dequeue() (v T, err error) {
 	if rb.wx == rb.rx {
 		return v, ErrEmpty
 	}
-	v = rb.buf[rb.rx&(len(rb.buf)-1)]
+	v = rb.buf[rb.rx&rb.mask()]
 	rb.rx++
 	return v, nil
+}
+
+func (rb *RingBuffer2[T]) mask() int {
+	return len(rb.buf) - 1
 }
