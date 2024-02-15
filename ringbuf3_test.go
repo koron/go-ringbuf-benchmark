@@ -4,7 +4,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/koron-go/ringbuf"
+	ringbuf "github.com/koron/go-ringbuf-benchmark"
 )
 
 func BenchmarkRingBuffer3(b *testing.B) {

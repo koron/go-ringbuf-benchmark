@@ -1,8 +1,8 @@
-# koron-go/ringbuf
+# koron/go-ringbuf-benchmark
 
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/koron-go/ringbuf)](https://pkg.go.dev/github.com/koron-go/ringbuf)
-[![Actions/Go](https://github.com/koron-go/ringbuf/workflows/Go/badge.svg)](https://github.com/koron-go/ringbuf/actions?query=workflow%3AGo)
-[![Go Report Card](https://goreportcard.com/badge/github.com/koron-go/ringbuf)](https://goreportcard.com/report/github.com/koron-go/ringbuf)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/koron/go-ringbuf-benchmark)](https://pkg.go.dev/github.com/koron/go-ringbuf-benchmark)
+[![Actions/Go](https://github.com/koron/go-ringbuf-benchmark/workflows/Go/badge.svg)](https://github.com/koron/go-ringbuf-benchmark/actions?query=workflow%3AGo)
+[![Go Report Card](https://goreportcard.com/badge/github.com/koron/go-ringbuf-benchmark)](https://goreportcard.com/report/github.com/koron/go-ringbuf-benchmark)
 
 See <https://kumagi.hatenablog.com/entry/ring-buffer>
 
@@ -22,26 +22,25 @@ RingBuffer5  | Use read index and capacity length w/o multi-goroutine supports
 ## Benchmark results
 
 ```console
-$ go test -bench . -benchmem
 goos: windows
 goarch: amd64
-pkg: github.com/koron-go/ringbuf
+pkg: github.com/koron/go-ringbuf-benchmark
 cpu: Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz
-BenchmarkRingBuffer0/single-16          177274972                6.697 ns/op           0 B/op          0 allocs/op
-BenchmarkRingBuffer1/single-16          835998076                1.431 ns/op           0 B/op          0 allocs/op
-BenchmarkRingBuffer2/single-16          84422025                13.75 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer2/multi-16           57571975                22.23 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer3/single-16          135313495                8.905 ns/op           0 B/op          0 allocs/op
-BenchmarkRingBuffer3/multi-16           44504277                22.79 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer3B/single-16         125987650                9.456 ns/op           0 B/op          0 allocs/op
-BenchmarkRingBuffer3B/multi-16          52267851                23.10 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer4/single-16          62735503                19.07 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer4/multi-16           60012002                20.86 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer4B/single-16         65714535                18.41 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer4B/multi-16          61101039                20.01 ns/op            0 B/op          0 allocs/op
-BenchmarkRingBuffer5/single-16          644982705                1.824 ns/op           0 B/op          0 allocs/op
+BenchmarkRingBuffer0/single-16          178371265                6.526 ns/op
+BenchmarkRingBuffer1/single-16          786034266                1.505 ns/op
+BenchmarkRingBuffer2/single-16          85309674                12.78 ns/op
+BenchmarkRingBuffer2/multi-16           69087810                16.26 ns/op
+BenchmarkRingBuffer3/single-16          140011688                8.641 ns/op
+BenchmarkRingBuffer3/multi-16           37608711                30.85 ns/op
+BenchmarkRingBuffer3B/single-16         139669322                8.494 ns/op
+BenchmarkRingBuffer3B/multi-16          56262482                33.03 ns/op
+BenchmarkRingBuffer4/single-16          57601750                20.16 ns/op
+BenchmarkRingBuffer4/multi-16           57848888                21.95 ns/op
+BenchmarkRingBuffer4B/single-16         58735713                19.57 ns/op
+BenchmarkRingBuffer4B/multi-16          55689105                21.48 ns/op
+BenchmarkRingBuffer5/single-16          665201374                1.753 ns/op
 PASS
-ok      github.com/koron-go/ringbuf     21.503s
+ok      github.com/koron/go-ringbuf-benchmark   19.022s
 ```
 
 * 複数goroutine環境での評価

@@ -3,7 +3,7 @@ package ringbuf_test
 import (
 	"testing"
 
-	"github.com/koron-go/ringbuf"
+	ringbuf "github.com/koron/go-ringbuf-benchmark"
 )
 
 func BenchmarkRingBuffer5(b *testing.B) {
